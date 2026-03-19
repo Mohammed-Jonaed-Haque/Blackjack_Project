@@ -9,12 +9,12 @@ def deal_cards():   #<--- plays the cards randomly
 
 
 def calculate_score(cards_list):
-    """Calculates the total score of the cards, and also changes the score on the ACE card accordingly """
+    """Calculates the total score of the cards, and also changes the score of the ACE card accordingly """
     score = sum(cards_list)
     if score==21 and len(cards_list)==2:
         return 0  #<--- here zero represents a black jack
 
-    if 11 in cards_list and score>21:  #<--- changing the score of ACE (which is, 11 , here accordingly
+    if 11 in cards_list and score>21:  #<--- changing the score of ACE which is, 11 , accordingly
         cards_list.remove(11)
         cards_list.append(1)
         score = sum(cards_list)
@@ -39,7 +39,7 @@ def compare(u_score, c_score):
         return "You WIN, your score is more than computer score"
 
 def start_game():
-    """all the main functionalities of the game"""
+    """All the main functionalities of the game"""
     print(art.logo)
     user_cards=[]
     computer_cards=[]
@@ -47,11 +47,11 @@ def start_game():
     user_score=-1
     is_the_game_over = False
 
-    for i in range(2):
+    for i in range(2): #<--- cards drawn and placed into the list
         user_cards.append(deal_cards())
         computer_cards.append(deal_cards())
 
-    while not is_the_game_over:
+    while not is_the_game_over: #<--- score calculation and drawing more cards.
         user_score=calculate_score(user_cards)
         computer_score=calculate_score(computer_cards)
         print(f"Your cards in hand are: {user_cards},  making your score {user_score}")
@@ -66,7 +66,7 @@ def start_game():
             else:
                 is_the_game_over=True
 
-    while computer_score!=0 and computer_score<17:
+    while computer_score!=0 and computer_score<17:  #<--- computer draws cards if needed
         computer_cards.append(deal_cards())
         computer_score=calculate_score(computer_cards)
 
@@ -77,4 +77,4 @@ def start_game():
 
 while  input("type 'y' to start a new game, or type 'n' to end game")=='y':
     print("\n"*100)
-    start_game()
+    start_game()   #<--- main game called
